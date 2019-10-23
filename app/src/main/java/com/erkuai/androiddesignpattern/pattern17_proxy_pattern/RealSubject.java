@@ -14,6 +14,6 @@ public class RealSubject extends Subject {
 
     @Override
     public void visit() {
-        Log.i(MainActivity.TAG, "Real Subject!");
+        Log.i(MainActivity.TAG + "-17", "Real Subject!");
     }
 }
