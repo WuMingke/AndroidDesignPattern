@@ -11,6 +11,8 @@ import com.erkuai.androiddesignpattern.pattern18_composite_pattern.Leaf;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.Volt220;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter2;
+import com.erkuai.androiddesignpattern.pattern20_decorator_pattern.ConcreteComponent;
+import com.erkuai.androiddesignpattern.pattern20_decorator_pattern.ConcreteDecoratorA;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
         VoltAdapter2 voltAdapter2 = new VoltAdapter2(new Volt220());
         Log.i(TAG + "-19", "输出电压2：" + voltAdapter2.getVolt220());
 
+        /*************************** 19.装饰模式 ***************************/
+        //构造被装饰的组件对象
+        ConcreteComponent concreteComponent = new ConcreteComponent();
+        //根据组件对象构造装饰者对象A并调用，此时相当于给组件对象增加装饰者A的功能方法
+        ConcreteDecoratorA concreteDecoratorA = new ConcreteDecoratorA(concreteComponent);
+        concreteDecoratorA.operate();
 
+        /*************************** 20.享元模式 ***************************/
     }
 }
