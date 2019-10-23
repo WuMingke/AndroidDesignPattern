@@ -55,5 +55,6 @@ public class MainActivity extends AppCompatActivity {
         VoltAdapter2 voltAdapter2 = new VoltAdapter2(new Volt220());
         Log.i(TAG + "-19", "输出电压2：" + voltAdapter2.getVolt220());
 
+
     }
 }
