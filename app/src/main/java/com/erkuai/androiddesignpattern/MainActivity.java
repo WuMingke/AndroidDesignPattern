@@ -2,11 +2,15 @@ package com.erkuai.androiddesignpattern;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.erkuai.androiddesignpattern.pattern17_proxy_pattern.ProxySubject;
 import com.erkuai.androiddesignpattern.pattern17_proxy_pattern.RealSubject;
 import com.erkuai.androiddesignpattern.pattern18_composite_pattern.Composite;
 import com.erkuai.androiddesignpattern.pattern18_composite_pattern.Leaf;
+import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.Volt220;
+import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter;
+import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,5 +46,14 @@ public class MainActivity extends AppCompatActivity {
         root.addChild(branch2);
         //执行方法
         root.doSomething();
+
+        /*************************** 19.组合模式 ***************************/
+        //类适配器模式
+        VoltAdapter voltAdapter = new VoltAdapter();
+        Log.i(TAG + "-19", "输出电压1：" + voltAdapter.getVolt5());
+        //对象适配器模式
+        VoltAdapter2 voltAdapter2 = new VoltAdapter2(new Volt220());
+        Log.i(TAG + "-19", "输出电压2：" + voltAdapter2.getVolt220());
+
     }
 }
