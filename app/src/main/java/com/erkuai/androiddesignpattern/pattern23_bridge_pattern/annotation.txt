@@ -1,0 +1,57 @@
+public interface Implementor {
+    //抽象部分的具体方法
+    void operationImpl();
+}
+
+public class ConcreteImplementorA implements Implementor {
+
+    @Override
+    public void operationImpl() {
+        //具体实现
+    }
+}
+
+public class ConcreteImplementorB implements Implementor {
+
+    @Override
+    public void operationImpl() {
+        //具体实现
+    }
+}
+
+public abstract class Abstraction {
+
+    //声明一个私有成员变量引用实现部分的对象
+    private Implementor implementor;
+
+    //通过实现部分对象的引用构造抽象部分的对象
+    public Abstraction(Implementor implementor) {
+        this.implementor = implementor;
+    }
+
+    //通过调用实现部分具体的方法实现具体的功能
+    public void operation() {
+        implementor.operationImpl();
+    }
+}
+
+public class RefinedAbstraction extends Abstraction {
+
+    public RefinedAbstraction(Implementor implementor) {
+        super(implementor);
+    }
+
+    //对父类抽象部分中的方法进行扩展
+    public void refinedOperation() {
+
+    }
+}
+
+Abstraction：抽象部分，保持一个对实现部分的引用，抽象部分中的方法需要调用实现部分的对象来实现，该类一般为抽象类
+
+RefinedAbstraction：抽象部分的具体实现，该类一般是对抽闲部分的方法进行完善和扩展
+
+Implementor：实现部分，可以为接口或抽象类，其方法不一定要与抽象部分中的一致，一般情况下是由实现部分提供基本的操作，
+而抽象部分定义的则是基于实现部分这些基本操作的业务方法
+
+ConcreteImplementorA/ConcreteImplementorB：实现部分的具体实现
