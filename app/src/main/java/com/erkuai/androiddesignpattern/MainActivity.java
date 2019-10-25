@@ -11,11 +11,16 @@ import com.erkuai.androiddesignpattern.pattern18_composite_pattern.Leaf;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.Volt220;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter;
 import com.erkuai.androiddesignpattern.pattern19_adapter_pattern.VoltAdapter2;
+import com.erkuai.androiddesignpattern.pattern1_singleton_pattern.Singleton;
 import com.erkuai.androiddesignpattern.pattern20_decorator_pattern.ConcreteComponent;
 import com.erkuai.androiddesignpattern.pattern20_decorator_pattern.ConcreteDecoratorA;
 import com.erkuai.androiddesignpattern.pattern21_flyweight_pattern.Ticket;
 import com.erkuai.androiddesignpattern.pattern21_flyweight_pattern.TicketFactory;
 import com.erkuai.androiddesignpattern.pattern22_facade_pattern.MobilePhone;
+import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.LargeCoffee;
+import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.Ordinary;
+import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.SmallCoffee;
+import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.Sugar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*************************** 1.单例模式 ***************************/
+        Singleton singleton = Singleton.getSingleton();
+
+        /*************************** 2.代理模式 ***************************/
 
         /*************************** 17.代理模式 ***************************/
         //构造一个真实主题对象
@@ -81,5 +91,22 @@ public class MainActivity extends AppCompatActivity {
         mobilePhone.videoChat();
 
         /*************************** 23.桥接模式 ***************************/
+        //原味
+        Ordinary ordinary = new Ordinary();
+        //准备糖类
+        Sugar sugar = new Sugar();
+        //大杯  原味
+        LargeCoffee largeCoffee = new LargeCoffee(ordinary);
+        largeCoffee.makeCoffee();
+        //小杯  原味
+        SmallCoffee smallCoffee = new SmallCoffee(ordinary);
+        smallCoffee.makeCoffee();
+        //大杯  加糖
+        LargeCoffee largeCoffee1 = new LargeCoffee(sugar);
+        largeCoffee1.makeCoffee();
+        //小杯  加糖
+        SmallCoffee smallCoffee1 = new SmallCoffee(sugar);
+        smallCoffee1.makeCoffee();
+
     }
 }

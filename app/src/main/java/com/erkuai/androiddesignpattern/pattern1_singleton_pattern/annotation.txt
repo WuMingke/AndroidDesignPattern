@@ -1,0 +1,105 @@
+饿汉式：线程安全，耗费资源
+public class Singleton1 {
+
+    private Singleton1() {
+    }
+
+    private static final Singleton1 SINGLETON_1 = new Singleton1();
+
+    public static Singleton1 getSingleton1() {
+        return SINGLETON_1;
+    }
+}
+
+饿汉式：在静态代码块中实现
+public class Singleton2 {
+
+    private Singleton2() {
+    }
+
+    private static Singleton2 singleton2;
+
+    static {
+        singleton2 = new Singleton2();
+    }
+
+    public static Singleton2 getSingleton2() {
+        return singleton2;
+    }
+
+}
+
+懒汉式：非线程安全
+public class Singleton3 {
+
+    private Singleton3() {
+    }
+
+    private static Singleton3 singleton3;
+
+    public static Singleton3 getSingleton3() {
+        if (null == singleton3) {
+            singleton3 = new Singleton3();
+        }
+        return singleton3;
+    }
+
+}
+
+懒汉式：线程安全，给方法加锁
+public class Singleton4 {
+
+    private Singleton4() {
+    }
+
+    private static Singleton4 singleton4;
+
+    public synchronized static Singleton4 getSingleton4() {
+        if (null == singleton4) {
+            singleton4 = new Singleton4();
+        }
+        return singleton4;
+    }
+
+}
+
+懒汉式：线程安全，双重检查锁（同步代码块）
+public class Singleton5 {
+
+    private Singleton5() {
+    }
+
+    private static Singleton5 singleton5;
+
+    public static Singleton5 getSingleton5() {
+        if (null == singleton5) {
+            synchronized (Singleton5.class) {
+                if (null == singleton5) {
+                    singleton5 = new Singleton5();
+                }
+            }
+        }
+        return singleton5;
+    }
+
+}
+
+懒汉式：静态内部类（推荐）
+public class Singleton6 {
+
+    private Singleton6() {
+    }
+
+    private static class SingletonHolder {
+        private static Singleton6 singleton6 = new Singleton6();
+    }
+
+    public static Singleton6 getSingleton6() {
+        return SingletonHolder.singleton6;
+    }
+}
+
+懒汉式：线程安全，枚举
+enum Singleton7 {
+    SINGLETON7,
+}
