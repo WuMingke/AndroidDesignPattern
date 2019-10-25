@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
         director.construct("intel", "Retina");
         Computer computer = builder.create();
 
-        /*************************** 2.原型模式 ***************************/
+        /*************************** 3.原型模式 ***************************/
+
+
 
 
         /*************************** 17.代理模式 ***************************/
