@@ -21,6 +21,9 @@ import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.LargeCoffee;
 import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.Ordinary;
 import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.SmallCoffee;
 import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.Sugar;
+import com.erkuai.androiddesignpattern.pattern2_builder_pattern.Computer;
+import com.erkuai.androiddesignpattern.pattern2_builder_pattern.Director;
+import com.erkuai.androiddesignpattern.pattern2_builder_pattern.MacBookBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +37,14 @@ public class MainActivity extends AppCompatActivity {
         /*************************** 1.单例模式 ***************************/
         Singleton singleton = Singleton.getSingleton();
 
-        /*************************** 2.代理模式 ***************************/
+        /*************************** 2.Builder模式 ***************************/
+        MacBookBuilder builder = new MacBookBuilder();
+        Director director = new Director(builder);
+        director.construct("intel", "Retina");
+        Computer computer = builder.create();
+
+        /*************************** 2.原型模式 ***************************/
+
 
         /*************************** 17.代理模式 ***************************/
         //构造一个真实主题对象
