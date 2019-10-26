@@ -36,6 +36,9 @@ import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.Abstrac
 import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.B1;
 import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.B2;
 import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.ConcreteFactory1;
+import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.BusStrategy;
+import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.SubwayStrategy;
+import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.TrafficCalculator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -103,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
         B2 b2 = concreteFactory2.createProductB();
         a2.method();
         b2.method();
+
+        /*************************** 6.策略模式 ***************************/
+        TrafficCalculator calculator = new TrafficCalculator();
+        //设置策略
+        //calculator.setStrategy(new BusStrategy());
+        calculator.setStrategy(new SubwayStrategy());
+        int price = calculator.calculatePrice(10);
+        Log.i(MainActivity.TAG + "-6", "price:" + price);
 
 
         /*************************** 17.代理模式 ***************************/
