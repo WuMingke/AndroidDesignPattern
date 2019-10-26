@@ -24,6 +24,11 @@ import com.erkuai.androiddesignpattern.pattern23_bridge_pattern.Sugar;
 import com.erkuai.androiddesignpattern.pattern2_builder_pattern.Computer;
 import com.erkuai.androiddesignpattern.pattern2_builder_pattern.Director;
 import com.erkuai.androiddesignpattern.pattern2_builder_pattern.MacBookBuilder;
+import com.erkuai.androiddesignpattern.pattern3_clone_pattern.WordDocument;
+import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteFactory;
+import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteFactory2;
+import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteProductA;
+import com.erkuai.androiddesignpattern.pattern4_factory_pattern.Product;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +49,42 @@ public class MainActivity extends AppCompatActivity {
         Computer computer = builder.create();
 
         /*************************** 3.原型模式 ***************************/
+        //构建文档对象
+        WordDocument document = new WordDocument();
+        //编辑文档，添加图片等
+        document.setText("这是一篇文档");
+        document.addImage("图片1");
+        document.addImage("图片2");
+        document.addImage("图片3");
+        document.showDocument();
+
+        //以原始文档为原型，拷贝一份副本
+        try {
+            WordDocument clone = document.clone();
+            clone.showDocument();
+
+            //修改文档副本，不会影响原始文档
+            clone.setText("这是修改过的DOC文档");
+            clone.showDocument();
 
 
+            document.showDocument();
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        /*************************** 4.工厂方法模式 ***************************/
+        ConcreteFactory factory = new ConcreteFactory();
+        Product product = factory.createProduct();
+        product.method();
+
+        //通过反射方式：
+        ConcreteFactory2 factory1 = new ConcreteFactory2();
+        ConcreteProductA product1 = factory1.createProduct(ConcreteProductA.class);
+        product1.method();
+
+        /*************************** 5.抽象工厂模式 ***************************/
 
 
         /*************************** 17.代理模式 ***************************/
