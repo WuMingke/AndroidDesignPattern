@@ -29,6 +29,13 @@ import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteFactory;
 import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteFactory2;
 import com.erkuai.androiddesignpattern.pattern4_factory_pattern.ConcreteProductA;
 import com.erkuai.androiddesignpattern.pattern4_factory_pattern.Product;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.A1;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.A2;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.AbstractFactory;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.AbstractProductA;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.B1;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.B2;
+import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.ConcreteFactory1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,6 +92,17 @@ public class MainActivity extends AppCompatActivity {
         product1.method();
 
         /*************************** 5.抽象工厂模式 ***************************/
+        ConcreteFactory1 concreteFactory1 = new ConcreteFactory1();
+        A1 a1 = concreteFactory1.createProductA();
+        B1 b1 = concreteFactory1.createProductB();
+        a1.method();
+        b1.method();
+        com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.ConcreteFactory2 concreteFactory2
+                = new com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.ConcreteFactory2();
+        A2 a2 = concreteFactory2.createProductA();
+        B2 b2 = concreteFactory2.createProductB();
+        a2.method();
+        b2.method();
 
 
         /*************************** 17.代理模式 ***************************/

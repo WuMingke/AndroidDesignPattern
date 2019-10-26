@@ -1,0 +1,11 @@
+AbstractFactory：
+抽象工厂角色，它声明了一组用于创建一种产品的方法，每一个方法对应一种产品
+
+ConcreteFactory1、ConcreteFactory2：
+具体工厂角色，创建具体的产品
+
+AbstractProductA、AbstractProduct2：
+抽象产品角色
+
+A1、A2、B1、B2：
+具体产品角色
