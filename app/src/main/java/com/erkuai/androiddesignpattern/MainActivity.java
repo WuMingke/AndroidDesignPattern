@@ -40,6 +40,8 @@ import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.BusStrategy;
 import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.SubwayStrategy;
 import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.TrafficCalculator;
 import com.erkuai.androiddesignpattern.pattern7_state_pattern.TvController;
+import com.erkuai.androiddesignpattern.pattern8_iterator_pattern.ConcreteHandler1;
+import com.erkuai.androiddesignpattern.pattern8_iterator_pattern.ConcreteHandler2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -126,7 +128,16 @@ public class MainActivity extends AppCompatActivity {
         tvController.turnDown();
 
         /*************************** 8.责任链模式 ***************************/
-
+        //构建一个handler1
+        ConcreteHandler1 handler1 = new ConcreteHandler1();
+        //构建一个handler2
+        ConcreteHandler2 handler2 = new ConcreteHandler2();
+        //设置handler1的下一个节点
+        handler1.nextHandler = handler2;
+        //设置handler2的下一个节点
+        handler2.nextHandler = handler1;
+        //处理请求
+        handler1.handleRequest("for handler2");
 
 
         /*************************** 17.代理模式 ***************************/
