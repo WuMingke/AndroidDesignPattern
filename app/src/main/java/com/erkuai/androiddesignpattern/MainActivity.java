@@ -39,6 +39,7 @@ import com.erkuai.androiddesignpattern.pattern5_abstract_factory_pattern.Concret
 import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.BusStrategy;
 import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.SubwayStrategy;
 import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.TrafficCalculator;
+import com.erkuai.androiddesignpattern.pattern7_state_pattern.TvController;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,6 +115,18 @@ public class MainActivity extends AppCompatActivity {
         calculator.setStrategy(new SubwayStrategy());
         int price = calculator.calculatePrice(10);
         Log.i(MainActivity.TAG + "-6", "price:" + price);
+
+        /*************************** 7.状态模式 ***************************/
+        TvController tvController = new TvController();
+        tvController.powerOn();
+        tvController.nextChannel();
+        tvController.turnUp();
+        tvController.powerOff();
+        //此时不会生效
+        tvController.turnDown();
+
+        /*************************** 8.责任链模式 ***************************/
+
 
 
         /*************************** 17.代理模式 ***************************/
