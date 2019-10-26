@@ -4,6 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.erkuai.androiddesignpattern.pattern10_command_pattern.ConcreteCommand;
+import com.erkuai.androiddesignpattern.pattern10_command_pattern.Invoker;
+import com.erkuai.androiddesignpattern.pattern10_command_pattern.Receiver;
+import com.erkuai.androiddesignpattern.pattern11_Observer_pattern.Coder;
+import com.erkuai.androiddesignpattern.pattern11_Observer_pattern.DevTechFrontier;
 import com.erkuai.androiddesignpattern.pattern17_proxy_pattern.ProxySubject;
 import com.erkuai.androiddesignpattern.pattern17_proxy_pattern.RealSubject;
 import com.erkuai.androiddesignpattern.pattern18_composite_pattern.Composite;
@@ -42,6 +47,7 @@ import com.erkuai.androiddesignpattern.pattern6_strategy_pattern.TrafficCalculat
 import com.erkuai.androiddesignpattern.pattern7_state_pattern.TvController;
 import com.erkuai.androiddesignpattern.pattern8_iterator_pattern.ConcreteHandler1;
 import com.erkuai.androiddesignpattern.pattern8_iterator_pattern.ConcreteHandler2;
+import com.erkuai.androiddesignpattern.pattern9_interpreter_pattern.Calculator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
         /*************************** 1.单例模式 ***************************/
         Singleton singleton = Singleton.getSingleton();
 
+
         /*************************** 2.Builder模式 ***************************/
         MacBookBuilder builder = new MacBookBuilder();
         Director director = new Director(builder);
         director.construct("intel", "Retina");
         Computer computer = builder.create();
+
 
         /*************************** 3.原型模式 ***************************/
         //构建文档对象
@@ -87,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         /*************************** 4.工厂方法模式 ***************************/
         ConcreteFactory factory = new ConcreteFactory();
         Product product = factory.createProduct();
@@ -96,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         ConcreteFactory2 factory1 = new ConcreteFactory2();
         ConcreteProductA product1 = factory1.createProduct(ConcreteProductA.class);
         product1.method();
+
 
         /*************************** 5.抽象工厂模式 ***************************/
         ConcreteFactory1 concreteFactory1 = new ConcreteFactory1();
@@ -110,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         a2.method();
         b2.method();
 
+
         /*************************** 6.策略模式 ***************************/
         TrafficCalculator calculator = new TrafficCalculator();
         //设置策略
@@ -117,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         calculator.setStrategy(new SubwayStrategy());
         int price = calculator.calculatePrice(10);
         Log.i(MainActivity.TAG + "-6", "price:" + price);
+
 
         /*************************** 7.状态模式 ***************************/
         TvController tvController = new TvController();
@@ -126,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         tvController.powerOff();
         //此时不会生效
         tvController.turnDown();
+
 
         /*************************** 8.责任链模式 ***************************/
         //构建一个handler1
@@ -139,6 +152,45 @@ public class MainActivity extends AppCompatActivity {
         //处理请求
         handler1.handleRequest("for handler2");
 
+
+        /*************************** 9.解释器模式 ***************************/
+        Calculator calculator1 = new Calculator("1 + 11 + 1 - 10");
+        int calculate = calculator1.calculate();
+        Log.i(MainActivity.TAG + "-9", "结果：" + calculate);
+
+
+        /*************************** 10.命令模式 ***************************/
+        //构造一个接收者对象
+        Receiver receiver = new Receiver();
+        //根据接收者对象构造一个命令对象
+        ConcreteCommand command = new ConcreteCommand(receiver);
+        //根据具体的对象构造请求者对象
+        Invoker invoker = new Invoker(command);
+        //执行请求方法
+        invoker.action();
+
+
+        /*************************** 11.观察者模式 ***************************/
+        //创建被观察者
+        DevTechFrontier techFrontier = new DevTechFrontier();
+        Coder coder = new Coder("Mr.Wu");
+        Coder coder1 = new Coder("Mrs.Liu");
+        Coder coder2 = new Coder("Mrs.Li");
+
+        //观察者
+        techFrontier.addObserver(coder);
+        techFrontier.addObserver(coder1);
+        techFrontier.addObserver(coder2);
+
+        //发布消息
+        techFrontier.postNewPublication("这是一条新消息。");
+
+
+        /*************************** 12.备忘录模式 ***************************/
+        /*************************** 13.迭代器模式 ***************************/
+        /*************************** 14.模板方法模式 ***************************/
+        /*************************** 15.访问者模式 ***************************/
+        /*************************** 16.中介者模式 ***************************/
 
         /*************************** 17.代理模式 ***************************/
         //构造一个真实主题对象
